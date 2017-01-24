@@ -1,7 +1,12 @@
-#include "client.hpp"
-
 #include <iostream>
 #include <array>
+#include <algorithm>
+#include <iterator>
+
+#include "event.hpp"
+#include "client.hpp"
+#include "utils.hpp"
+#include "parser.hpp"
 
 using namespace boost;
 using boost::asio::ip::tcp;
@@ -25,9 +30,9 @@ void irc::Client::connect(system::error_code& err)
     asio::connect(_socket, endpoint_iterator, err);
 }
 
-void irc::Client::listen(system::error_code& err)
+void irc::Client::read_message(system::error_code& err)
 {
-    std::array<char, 256> buf;
+    std::array<char, 512> buf;
     size_t bytes_read = 0;
 
     while (true) {
@@ -38,5 +43,9 @@ void irc::Client::listen(system::error_code& err)
 
         std::cout << ">> ";
         std::cout.write(buf.data(), bytes_read);
+
+        std::string msg(buf.data());
+        auto message = irc::parser::parse_message(msg);
+        message.print();
     }
 }

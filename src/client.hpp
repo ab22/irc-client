@@ -16,7 +16,7 @@ private:
 public:
     Client(const char* server, const char* port);
     void connect(boost::system::error_code&);
-    void listen(boost::system::error_code&);
+    void read_message(boost::system::error_code&);
 };
 }
 

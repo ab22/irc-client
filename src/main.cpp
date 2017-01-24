@@ -15,17 +15,19 @@ int main()
     c.connect(err);
 
     if (err) {
-        std::cout << "Error ocurred: " << err.message() << "\n";
+        std::cout << "Could not connect to server: " << err.message() << "\n";
         return -1;
     }
 
     std::cout << "Listening...\n";
-    c.listen(err);
+    c.read_message(err);
 
     if (err != boost::asio::error::eof) {
         std::cout << "Error ocurred: " << err.message() << "\n";
         return -1;
     }
+
+    std::cout << "Connection terminated!\n";
 
     return 0;
 }
