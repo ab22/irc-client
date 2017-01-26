@@ -1,10 +1,11 @@
 #include "parser.hpp"
 
-#include <iostream>
 #include "event.hpp"
 #include "utils.hpp"
+#include <iostream>
+#include <iterator>
 
-irc::Message irc::parser::parse_message(std::string& msg)
+irc::Message irc::parser::parse_message(std::string msg)
 {
     std::size_t pos = msg.find("\r\n");
 
@@ -49,8 +50,9 @@ irc::Message irc::parser::parse_message(std::string& msg)
     msg = msg.substr(pos + 2);
     message.params = strutils::split(msg, " ");
 
-    if (params.size() > 0) {
-        message.params.insert(message.params.begin(), params.begin(), params.end());
+    // Add missing params if we missed it.
+    if (params.size() > 1) {
+        std::move(params.begin() + 1, params.end(), std::back_inserter(message.params));
     }
 
     return message;

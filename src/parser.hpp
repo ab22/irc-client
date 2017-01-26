@@ -7,7 +7,7 @@
 
 namespace irc {
 namespace parser {
-    irc::Message parse_message(std::string& message);
+    irc::Message parse_message(std::string message);
 }
 }
 
