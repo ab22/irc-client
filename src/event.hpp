@@ -1,10 +1,9 @@
-#ifndef __IRC_EVENT_HPP__
-#define __IRC_EVENT_HPP__
+#pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 namespace irc {
 
@@ -40,5 +39,3 @@ struct Message {
     }
 };
 }
-
-#endif

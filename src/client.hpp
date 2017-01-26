@@ -1,5 +1,4 @@
-#ifndef __IRC_CLIENT_HPP__
-#define __IRC_CLIENT_HPP__
+#pragma once
 
 #include <array>
 #include <boost/asio.hpp>
@@ -27,5 +26,3 @@ public:
     std::string read_line(boost::system::error_code&);
 };
 }
-
-#endif

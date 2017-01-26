@@ -1,13 +1,10 @@
-#ifndef __IRC_UTILS_HPP__
-#define __IRC_UTILS_HPP__
+#pragma once
 
-#include <string>
-#include <sstream>
-#include <vector>
 #include <algorithm>
+#include <sstream>
+#include <string>
+#include <vector>
 
 namespace strutils {
 std::vector<std::string> split(const std::string& s, const std::string& delim, const bool keep_empty = true);
 }
-
-#endif
