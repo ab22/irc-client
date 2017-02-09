@@ -1,11 +1,13 @@
 #include "parser.hpp"
 
-#include "event.hpp"
-#include "utils.hpp"
+#include "../event/event.hpp"
+#include "../utils.hpp"
 #include <iostream>
 #include <iterator>
 
-irc::Message irc::parser::parse_message(std::string msg)
+using irc::event::Message;
+
+Message irc::parser::parse_message(std::string msg)
 {
     std::size_t pos = msg.find("\r\n");
 
@@ -17,7 +19,7 @@ irc::Message irc::parser::parse_message(std::string msg)
     if (msg.length() == 0)
         throw "parse message: empty message!";
 
-    irc::Message message;
+    Message message;
 
     if (msg[0] == ':') {
         pos = msg.find(" ");

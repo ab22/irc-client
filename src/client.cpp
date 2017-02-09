@@ -4,7 +4,7 @@
 #include <iterator>
 
 #include "client.hpp"
-#include "event.hpp"
+#include "event/event.hpp"
 #include "utils.hpp"
 
 using namespace boost;

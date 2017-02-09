@@ -15,8 +15,22 @@ find_package(
 )
 
 include_directories(${Boost_INCLUDE_DIR})
-file (GLOB SOURCES "./*.cpp")
-add_executable(client ${SOURCES})
+
+
+set (irc-parser-SOURCES
+	parser/parser.cpp
+)
+
+set (irc-SOURCES
+	client.cpp
+	utils.cpp
+	main.cpp
+)
+
+add_executable(client
+	${irc-parser-SOURCES}
+	${irc-SOURCES}
+)
 target_link_libraries(client ${Boost_LIBRARIES})
 
 install (TARGETS client DESTINATION bin)
